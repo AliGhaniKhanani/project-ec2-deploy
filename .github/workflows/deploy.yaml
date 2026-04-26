@@ -5,5 +5,18 @@ on:
   push:
     branches:
       - main
+
+permissions: 
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@5
+
+      
       
   
