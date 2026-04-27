@@ -1,21 +1,33 @@
+name: Deploy using OIDC
 
-name: deploy to ec2
-
-on: 
+on:
   push:
     branches:
       - main
 
-permissions: 
-  id-token: write
+permissions:
+  id-token: write   # allows GitHub to generate OIDC token
   contents: read
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: checkout code
-        uses: actions/checkout@5
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Authenticate to AWS (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: us-east-1
+
+      - name: Verify Identity
+        run: aws sts get-caller-identity
+
+      - name: (List EC2)
+        run: aws ec2 describe-instances
 
       
       
