@@ -23,6 +23,9 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: us-east-1
 
+      - name: List S3 buckets
+        run: aws s3 ls
+
       - name: Verify Identity
         run: aws sts get-caller-identity
 
