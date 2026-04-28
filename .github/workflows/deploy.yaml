@@ -1,6 +1,6 @@
 
   
-name: Deploy using OIDC + SSM
+name: Deploy using OIDC and SSM
 
 on:
   push:
