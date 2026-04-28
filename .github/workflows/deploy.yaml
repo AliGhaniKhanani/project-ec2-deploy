@@ -37,13 +37,12 @@ jobs:
         run: |
           aws s3 sync . s3://$S3_BUCKET/
 
-      # Deploy to EC2 via SSM
       - name: Deploy to EC2 via SSM
         run: |
           aws ssm send-command \
             --instance-ids "$INSTANCE_ID" \
             --document-name "AWS-RunShellScript" \
-            --comment "Deploy static site" \
+            --comment "Deploying" \
             --parameters commands='[
               "sudo mkdir -p /usr/share/nginx/html",
               "cd /usr/share/nginx/html",
