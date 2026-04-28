@@ -18,7 +18,7 @@ jobs:
     env:
       AWS_REGION: us-east-1
       S3_BUCKET: amzn-s3bucket-deploytoec2
-      INSTANCE_ID: i-09586411125d29d10   # replace with your EC2 instance ID
+      INSTANCE_ID: i-09586411125d29d10
 
     steps:
       - name: Checkout Code
